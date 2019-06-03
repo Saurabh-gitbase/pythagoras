@@ -301,5 +301,29 @@ for c in given_string:
 print(count)
 
 
+#C-1.27 
+#InSection 1.8, weprovided three different implementations of agenerator that computes factors of a given integer. 
+#The third of those implementations, from page 41, was the most efﬁcient, but we noted that it did not yield the factors inincreasing order. 
+#Modify the generator s othat it reports factors in increasing order, while maintaining its general performance advantages.
+
+#Not sure this preserves the general performance or not.
+
+input =10
+
+def factorial_check(n):
+    k=1
+    while k*k < n:
+        if n % k == 0:
+            yield k
+            yield n // k
+        k+=1
+    if k*k == n:
+        yield k
+
+print(sorted(factorial_check(input)))
+
+#for printing normally(Unsorted manner)
+#for i in factorial_check(n):
+#    print(i)
 
 
