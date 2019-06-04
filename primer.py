@@ -301,5 +301,71 @@ for c in given_string:
 print(count)
 
 
+#P-1.29 Write a Python program that outputs all possible strings formed by using the characters c , a , t , d , o , and g exactly once.
+
+#(Page 54).
+import itertools
+data = ['c','a','t','d','o','g']
+
+for n in range(1,len(data)+1):
+    for result in itertools.combinations(data,n):
+        print(result)
+        
+        
+ #P-1.30 Write a Python program that can take a positive integer greater than 2 as input and write out the number of times one must repeatedly divide this number by 2 before getting a value less than 2.
+
+#(Page 54). 
+def solution_div2(value):
+    count = 0
+    if value <= 2:
+        return "enter proper value"
+    while value >=2:
+        value =value / 2
+        count=count+1
+        #print(value,' ',count)
+    return count
+
+print(solution_div2(10))
 
 
+#P-1.31 Write a Python program that can “make change.” Your program should take two numbers as input, one that is a monetary amount charged and the other that is a monetary amount given. It should then return the number of each kind of bill and coin to give back as change for the difference between the amount given and the amount charged. The values assigned to the bills and coins can be based on the monetary system of any current or former government. Try to design your program so that it returns as few bills and coins as possible.
+
+#(Page 54). 
+
+import itertools
+
+bills = [500,100,50,20,10,5,1]
+
+total = 1000
+recived = int(input("money paid = "))
+
+remaining = total - recived
+
+sol = []
+
+for n in range(1,len(bills)+1):                                       # This is used to find all possible combinations possible,including repetation of elements(itertools.combinations_with_replacement()).
+    for combi in itertools.combinations_with_replacement(bills,n):
+        if sum(combi) == remaining:
+            sol.append(combi)
+            
+            
+#print(sol)     # If you want to see all possible solutions.
+
+for i in set(min(sol,key=len)):                                       # This is used to print how many number of notes or coin we have to return.
+   print(min(sol,key=len).count(i) ," times " , i)
+
+
+
+
+#P-1.36 Write a Python program that inputs a list of words, separated by whitespace, and outputs how many times each word appears in the list. You need not worry about efficiency at this point, however, as this topic is something that will be addressed later in this book.
+
+#(Page 54). 
+
+def find_sol(data):
+    sol = data.split(' ')
+    for i in set(sol):
+        print(i," is ",sol.count(i) ,"times present in string")
+    
+data = "hi my name is panda hi"
+
+find_sol(data)
